@@ -68,6 +68,8 @@ class GameBoard {
     this.board = document.createElement('div');
     this.board.setAttribute('id', 'game-board');
     this.board.classList.add('hidden');
+    this.resultElement = document.createElement('div');
+    this.restartButton = document.createElement('button');
     GAME_CONTAINER?.appendChild(this.board);
   }
 
@@ -190,6 +192,7 @@ class GameForm {
     this.errorSpan = document.createElement('span');
     this.errorSpan.id = 'error';
     this.errorSpan.classList.add('hidden');
+    this.instructionSpan = document.createElement('span');
   }
 
   initForm() {
@@ -266,7 +269,7 @@ class GameForm {
         return (this.playerInput = `${inputValue}`);
       }
     } catch (error) {
-      this.errorSpan.innerText = error.message;
+      this.errorSpan.innerText = (error as Error).message;
       this.errorSpan.classList.remove('hidden');
       this.instructionSpan.classList.add('hidden');
     }
